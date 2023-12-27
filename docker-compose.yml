@@ -21,4 +21,4 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=foo
+      - POSTGRES_DB=foo # Will change the default [db name](https://github.com/docker-library/docs/blob/master/postgres/README.md#postgres_db)
