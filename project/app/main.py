@@ -7,10 +7,10 @@ from app.models import Song, SongCreate
 
 app = FastAPI()
 
-
-@app.on_event("startup")
-def on_startup():
-    init_db()
+# TODO Remove, since Alembic will setup the database
+# @app.on_event("startup")
+# def on_startup():
+#     init_db()
 
 
 @app.get("/ping")
@@ -22,7 +22,10 @@ async def pong():
 def get_songs(session: Session = Depends(get_session)):
     result = session.execute(select(Song))
     songs = result.scalars().all()
-    return [Song(name=song.name, artist=song.artist, id=song.id) for song in songs]
+    return [
+        Song(name=song.name, artist=song.artist, year=song.year, id=song.id)
+        for song in songs
+    ]
 
 
 @app.post("/songs")
