@@ -9,6 +9,7 @@ engine = create_engine(DATABASE_URL, echo=True)
 
 
 def init_db():
+    # This creates [both db and tables](https://sqlmodel.tiangolo.com/tutorial/fastapi/simple-hero-api/#create-database-and-tables-on-startup)
     SQLModel.metadata.create_all(engine)
 
 
